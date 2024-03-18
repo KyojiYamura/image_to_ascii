@@ -20,7 +20,9 @@ def pixels_to_ascii(image):
     pixels = image.getdata()
     ascii_str = ""
     for pixel_value in pixels:
-        ascii_str += ASCII_CHARS[pixel_value // 25]
+        normalized_pixel = pixel_value / 255
+        ascii_index = int(normalized_pixel * (len(ASCII_CHARS) - 1))
+        ascii_str += ASCII_CHARS[ascii_index]
     return ascii_str
 
 
